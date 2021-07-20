@@ -1,0 +1,21 @@
+{
+  "name": "alexgutler/mercado-php",
+  "description": "Desafio técnico PHP",
+  "keywords": ["mvc", "app", "mercado"],
+  "require": {
+    "php": ">=7.1"
+  },
+  "minimum-stability": "stable",
+  "authors":[
+    {
+      "name":"Alex Gutler",
+      "email":"alex11jgt@hotmail.com"
+    }
+  ],
+  "autoload":{
+    "psr-4":{
+      "App\\": "app/"
+    },
+    "files": ["app/config.php"]
+  }
+}

@@ -1,0 +1,139 @@
+.bg-primary {
+    color: #fff;
+    background-color: #337ab7 !important;
+}
+a.bg-primary:hover,
+a.bg-primary:focus {
+    background-color: #286090 !important;
+}
+.bg-success {
+    background-color: #dff0d8 !important;
+}
+a.bg-success:hover,
+a.bg-success:focus {
+    background-color: #c1e2b3 !important;
+}
+.bg-info {
+    background-color: #d9edf7 !important;
+}
+a.bg-info:hover,
+a.bg-info:focus {
+    background-color: #afd9ee !important;
+}
+.bg-warning {
+    background-color: #fcf8e3 !important;
+}
+a.bg-warning:hover,
+a.bg-warning:focus {
+    background-color: #f7ecb5 !important;
+}
+.bg-danger {
+    background-color: #f2dede !important;
+}
+a.bg-danger:hover,
+a.bg-danger:focus {
+    background-color: #e4b9b9 !important;
+}
+
+.margin-top-0 {
+    margin-top: 0 !important;
+}
+.margin-top-5 {
+    margin-top: 5px !important;
+}
+.margin-top-10 {
+    margin-top: 10px !important;
+}
+.margin-top-15 {
+    margin-top: 15px !important;
+}
+.margin-top-20 {
+    margin-top: 20px !important;
+}
+.margin-top-25 {
+    margin-top: 25px !important;
+}
+.margin-top-30 {
+    margin-top: 30px !important;
+}
+.margin-top-40 {
+    margin-top: 40px !important;
+}
+.margin-top-50 {
+    margin-top: 50px !important;
+}
+
+.margin-bottom-0 {
+    margin-bottom: 0 !important;
+}
+.margin-bottom-5 {
+    margin-bottom: 5px !important;
+}
+.margin-bottom-10 {
+    margin-bottom: 10px !important;
+}
+.margin-bottom-13 {
+    margin-bottom: 13px !important;
+}
+.margin-bottom-15 {
+    margin-bottom: 15px !important;
+}
+.margin-bottom-20 {
+    margin-bottom: 20px !important;
+}
+.margin-bottom-25 {
+    margin-bottom: 25px !important;
+}
+.margin-bottom-30 {
+    margin-bottom: 30px !important;
+}
+.margin-bottom-40 {
+    margin-bottom: 40px !important;
+}
+.margin-bottom-50 {
+    margin-bottom: 50px !important;
+}
+
+.margin-left-0 {
+    margin-left: 0 !important;
+}
+.margin-left-5 {
+    margin-left: 5px !important;
+}
+.margin-left-10 {
+    margin-left: 10px !important;
+}
+.margin-left-15 {
+    margin-left: 15px !important;
+}
+.margin-left-20 {
+    margin-left: 20px !important;
+}
+.margin-left-25 {
+    margin-left: 25px !important;
+}
+.margin-left-30 {
+    margin-left: 30px !important;
+}
+
+.margin-right-0 {
+    margin-right: 0 !important;
+}
+.margin-right-5 {
+    margin-right: 5px !important;
+}
+.margin-right-10 {
+    margin-right: 10px !important;
+}
+.margin-right-15 {
+    margin-right: 15px !important;
+}
+.margin-right-20 {
+    margin-right: 20px !important;
+}
+.margin-right-25 {
+    margin-right: 25px !important;
+}
+.margin-right-30 {
+    margin-right: 30px !important;
+}
