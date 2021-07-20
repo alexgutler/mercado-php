@@ -8,30 +8,6 @@ use \PDOStatement;
 class Database {
 
     /**
-     * Host de conexão com o banco de dados
-     * @var string
-     */
-    const HOST = 'localhost';
-
-    /**
-     * Nome do banco de dados
-     * @var string
-     */
-    const NAME = 'php_estudos';
-
-    /**
-     * Usuário do banco
-     * @var string
-     */
-    const USER = 'admin';
-
-    /**
-     * Senha de acesso ao banco de dados
-     * @var string
-     */
-    const PASS = '';
-
-    /**
      * Nome da tabela a ser manipulada
      * @var string
      */
@@ -57,7 +33,7 @@ class Database {
      */
     private function setConnection(){
         try {
-            $this->connection = new PDO('mysql:host='.self::HOST.';dbname='.self::NAME,self::USER,self::PASS);
+            $this->connection = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME,DB_USER,DB_PASS);
             $this->connection->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             die('ERROR: ' . $e->getMessage());

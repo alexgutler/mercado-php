@@ -18,7 +18,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Cadastros <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Produtos</a></li>
+                        <li><a href="/views/produto/">Produtos</a></li>
                         <li><a href="/views/tipo_produto/">Tipos Produtos</a></li>
                     </ul>
                 </li>

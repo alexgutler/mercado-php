@@ -4,13 +4,13 @@ namespace App\Entity;
 use \App\Db\Database;
 use \PDO;
 
-class TipoProduto {
+class Produto {
 
     /**
      * Nome da tabela no banco
      * @var string
      */
-    private $nomeTabela = 'tipos_produtos';
+    private $nomeTabela = 'produtos';
 
     /**
      * Identificador único
@@ -31,10 +31,16 @@ class TipoProduto {
     public $descricao;
 
     /**
-     * Percentual de imposto pago
-     * @var float
+     * Id do Tipo de Produto
+     * @var integer
      */
-    public $percentual_imposto;
+    public $tipo_id;
+
+    /**
+     * Tipo de Produto
+     * @var TipoProduto
+     */
+    public $tipoProduto;
 
     /**
      * Define se está ativo
@@ -62,7 +68,7 @@ class TipoProduto {
         $this->id = $db->insert([
             'nome' => $this->nome,
             'descricao' => $this->descricao,
-            'percentual_imposto' => $this->percentual_imposto,
+            'tipo_id' => $this->tipo_id,
             'ativo' => $this->ativo,
             'dh_cadastro' => $this->dh_cadastro
         ]);
@@ -81,7 +87,7 @@ class TipoProduto {
         return $db->update('id = ' . $this->id, [
             'nome' => $this->nome,
             'descricao' => $this->descricao,
-            'percentual_imposto' => $this->percentual_imposto,
+            'tipo_id' => $this->tipo_id,
             'ativo' => $this->ativo,
         ]);
     }
@@ -108,12 +114,25 @@ class TipoProduto {
 
     /**
      * Método responsável por buscar um registro com base em seu ID
-     * @param  integer $id
-     * @return TipoProduto
+     * @param integer $id
+     * @return Produto
      */
     public function find($id) {
-        return (new Database($this->nomeTabela))->select('id = '.$id)
+        $registro = (new Database($this->nomeTabela))->select('id = '.$id)
             ->fetchObject(self::class);
+        $registro->tipoProduto = $this->getTipoProduto($registro->tipo_id);
+        return $registro;
     }
 
+    public function getTipoProduto($id){
+        return (new TipoProduto)->find($id);
+    }
+
+    public function getComTipo($where = null, $order = null, $limit = null) {
+        $registros = $this->get($where = null, $order = null, $limit = null);
+        foreach ($registros as $registro) {
+            $registro->tipoProduto = $this->getTipoProduto($registro->tipo_id);
+        }
+        return $registros;
+    }
 }

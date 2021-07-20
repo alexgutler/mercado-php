@@ -1,7 +1,7 @@
 <?php
-    use App\Entity\TipoProduto;
+    use App\Entity\Produto;
 
-    $registros = (new TipoProduto())->get(null, 'nome');
+    $registros = (new Produto())->getComTipo(null, 'nome');
 
     $mensagem = '';
     if (isset($_GET['status'])) {
@@ -13,12 +13,12 @@
     }
 
     $resultados = '';
-    foreach($registros as $registro){
+    foreach ($registros as $registro) {
         $resultados .= '<tr>
                           <td>'.$registro->id.'</td>
                           <td>'.$registro->nome.'</td>
                           <td>'.$registro->descricao.'</td>
-                          <td>'.(number_format($registro->percentual_imposto, 2, ',', '.')).'</td>
+                          <td>'.($registro->tipoProduto ? $registro->tipoProduto->nome : '').'</td>
                           <td>'.($registro->ativo ? 'Ativo' : 'Inativo').'</td>
                           <td>'.date('d/m/Y H:i:s', strtotime($registro->dh_cadastro)).'</td>
                           <td>
@@ -60,7 +60,7 @@
                     <th>ID</th>
                     <th>Nome</th>
                     <th>Descrição</th>
-                    <th>Percentual Imposto (%)</th>
+                    <th>Tipo</th>
                     <th>Status</th>
                     <th>Cadastrado em</th>
                     <th>Ações</th>

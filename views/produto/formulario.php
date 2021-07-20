@@ -4,18 +4,27 @@
     <form method="post">
         <div class="form-group">
             <label for="nome">Nome <i class="fa fa-asterisk fa-required"></i></label>
-            <input type="text" class="form-control" id="nome" name="nome" value="<?=$obTipo->nome?>" required maxlength="150">
+            <input type="text" class="form-control" id="nome" name="nome" value="<?=$obProduto->nome?>" required maxlength="150">
         </div>
 
         <div class="form-group">
             <label for="descricao">Descrição</label>
-            <textarea class="form-control" id="descricao" name="descricao" rows="4" maxlength="255"><?=$obTipo->descricao?></textarea>
+            <textarea class="form-control" id="descricao" name="descricao" rows="4" maxlength="255"><?=$obProduto->descricao?></textarea>
         </div>
 
+        <?php
+            $opcoesSelectTipos = '';
+            foreach ($tiposProduto as $tipo) {
+                $opcoesSelectTipos .= '<option value="' . $tipo->id . '" ' .
+                                            (!$cadastro && $obProduto->tipo_id == $tipo->id ? 'selected' : '') . '>' . $tipo->nome . '</option>';
+            }
+        ?>
         <div class="form-group">
-            <label for="percentual_imposto">Percentual Imposto <i class="fa fa-asterisk fa-required"></i></label>
-            <input type="number" class="form-control" id="percentual_imposto" name="percentual_imposto" value="<?=$obTipo->percentual_imposto?>"
-                   min="0" required>
+            <label for="tipo">Tipo <i class="fa fa-asterisk fa-required"></i> </label>
+            <select class="form-control" id="tipo" name="tipo_id" required>
+                <option <?=$cadastro ? 'selected' : ''?>>Selecione...</option>
+                <?=$opcoesSelectTipos?>
+            </select>
         </div>
 
         <div class="form-group">
@@ -28,7 +37,7 @@
                 </div>
                 <div class="form-check form-check-inline">
                     <label class="form-control">
-                        <input type="radio" name="ativo" value="0" <?=(!$cadastro && !$obTipo->ativo) ? 'checked' : ''?>> Inativo
+                        <input type="radio" name="ativo" value="0" <?=(!$cadastro && !$obProduto->ativo) ? 'checked' : ''?>> Inativo
                     </label>
                 </div>
             </div>
