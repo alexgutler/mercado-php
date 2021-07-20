@@ -1,7 +1,7 @@
-#Desafio Técnico PHP
+## Desafio Técnico Mercado PHP
 
 
-##Instalação
+## Instalação
 
 Clone o projeto com o código abaixo no terminal.
 
