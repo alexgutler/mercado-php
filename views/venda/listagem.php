@@ -1,7 +1,7 @@
 <?php
-    use App\Entity\Produto;
+    use App\Entity\Venda;
 
-    $registros = (new Produto())->getComTipo(null, 'nome');
+    $registros = (new Venda())->get(null,'dh_cadastro');
 
     $mensagem = '';
     if (isset($_GET['status'])) {
@@ -16,11 +16,10 @@
     foreach ($registros as $registro) {
         $resultados .= '<tr>
                           <td>'.$registro->id.'</td>
-                          <td>'.$registro->nome.'</td>
-                          <td>'.$registro->descricao.'</td>
-                          <td>'.($registro->tipoProduto ? $registro->tipoProduto->nome : '').'</td>
-                          <td>'.($registro->ativo ? 'Ativo' : 'Inativo').'</td>
-                          <td>'.date('d/m/Y H:i:s', strtotime($registro->dh_cadastro)).'</td>
+                          <td>'.(formatarValorBr($registro->valor_total_compra)).'</td>
+                          <td>'.(formatarValorBr($registro->valor_total_imposto)).'</td>
+                          <td>'.$registro->observacoes.'</td>
+                          <td>'.(formatarDataHoraBr($registro->dh_cadastro)).'</td>
                           <td>
                             <a href="editar.php?id='.$registro->id.'" class="btn btn-warning btn-xs">
                                 <i class="fa fa-edit"></i>
@@ -33,7 +32,7 @@
     }
 
     $resultados = strlen($resultados) ? $resultados : '<tr>
-                                                         <td colspan="7" class="text-center">
+                                                         <td colspan="5" class="text-center">
                                                             Nenhum registro encontrado
                                                          </td>
                                                        </tr>';
@@ -58,10 +57,9 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Nome</th>
-                    <th>Descrição</th>
-                    <th>Tipo</th>
-                    <th>Status</th>
+                    <th>Valor Total</th>
+                    <th>Valor Imposto</th>
+                    <th>Observações</th>
                     <th>Cadastrado em</th>
                     <th>Ações</th>
                 </tr>

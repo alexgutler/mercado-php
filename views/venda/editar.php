@@ -4,7 +4,7 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 define('TITLE', 'Editar Produto');
 
 use \App\Entity\Produto;
-use \App\Entity\TipoProduto;
+use \App\Entity\Venda;
 
 //VALIDAÇÃO DO ID
 if (!isset($_GET['id']) or !is_numeric($_GET['id'])) {
@@ -13,22 +13,17 @@ if (!isset($_GET['id']) or !is_numeric($_GET['id'])) {
 }
 
 //BUSCAR O REGISTRO
-$obProduto = (new Produto)->find($_GET['id']);
+$obVenda = (new Venda)->find($_GET['id'], true);
 
 //VALIDAÇÃO DO REGISTRO
-if (!$obProduto instanceof Produto){
+if (!$obVenda instanceof Venda){
     header('location: index.php?status=error');
     exit;
 }
 
 //VALIDAÇÃO DO POST
-if (isset($_POST['nome'], $_POST['tipo_id'], $_POST['ativo'])) {
-
-    $obProduto->nome = $_POST['nome'];
-    $obProduto->descricao = $_POST['descricao'];
-    $obProduto->tipo_id = $_POST['tipo_id'];
-    $obProduto->ativo = $_POST['ativo'];
-    $obProduto->update();
+if (isset($_POST['dh_cadastro'], $_POST['valor_total_compra'], $_POST['produtos'])) {
+    $obVenda->fillAndSave($_POST);
 
     header('location: index.php?status=success');
     exit;
@@ -37,7 +32,7 @@ if (isset($_POST['nome'], $_POST['tipo_id'], $_POST['ativo'])) {
 include_once __DIR__ . '/../theme/header.php';
 
 $cadastro = false;
-$tiposProduto = (new TipoProduto)->get('ativo=true', 'nome');
+$produtos = (new Produto)->get(null, 'nome');
 include_once __DIR__ .'/formulario.php';
 
 include_once __DIR__ . '/../theme/footer.php';

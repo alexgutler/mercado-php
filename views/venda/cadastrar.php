@@ -10,13 +10,7 @@ $obVenda = new Venda;
 
 //VALIDAÇÃO DO POST
 if (isset($_POST['dh_cadastro'], $_POST['valor_total_compra'], $_POST['produtos'])) {
-    dd($_POST['produtos'], $_POST['dh_cadastro']);
-
-    $obVenda->nome = $_POST['nome'];
-    $obVenda->descricao = $_POST['descricao'];
-    $obVenda->tipo_id = $_POST['tipo_id'];
-    $obVenda->ativo = $_POST['ativo'];
-    $obVenda->create();
+    $obVenda->fillAndSave($_POST);
 
     header('location: index.php?status=success');
     exit;

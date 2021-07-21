@@ -191,8 +191,9 @@ $(function($) {
 });
 
 $(function($) {
-    console.log("APP");
-
+    /*
+    * Ao clicar para adicionar produto
+    * */
     $("#btnAdicionarProduto").on("click",function() {
 
         var parent = $(".linha-produto").last(), // última linha adicionada
@@ -236,6 +237,7 @@ $(function($) {
     * Ao clicar para remover produto.
     * */
     $(document).on("click", ".btnRemoverProduto", function() {
+        // Só remover se existir mais de um
         if ($(".linha-produto").length > 1) {
             var id = $(this).closest(".linha-produto").prop("id").replace("produtos-", "");
             $("#produtos-" + id).remove();
@@ -244,9 +246,9 @@ $(function($) {
     });
 
     /*
-    * Blur no campo de quantidade do produto.
+    * Blur/change no campo de quantidade do produto.
     * */
-    $(document).on("blur", "#produtos .quantidade", function() {
+    $(document).on("blur, change", "#produtos .quantidade", function() {
         calculaValorTotal();
     });
 
@@ -263,6 +265,7 @@ $(function($) {
     function calculaValorTotal() {
         var valorProdutos = 0;
 
+        // Percorrer os produtos para atualizar seus totais pela quantidade e valor unitário
         $("#produtos").find(".linha-produto").each(function() {
             var quantidade = $(this).find(".quantidade").val();
             quantidade = (quantidade) ? quantidade : 0;
@@ -273,9 +276,11 @@ $(function($) {
 
             $(this).find(".valor_total").val( float2moeda(valorTotal) );
 
+            // Adicionar ao valor total da venda
             valorProdutos += valorTotal;
         });
 
+        // Atualizar o valor total
         $("#valor_total_compra").val( float2moeda(valorProdutos) );
     }
 

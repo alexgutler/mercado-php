@@ -1,9 +1,9 @@
 <?php
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-define('TITLE', 'Excluir Produto');
+define('TITLE', 'Excluir Venda');
 
-use \App\Entity\Produto;
+use \App\Entity\Venda;
 
 //VALIDAÇÃO DO ID
 if (!isset($_GET['id']) or !is_numeric($_GET['id'])){
@@ -12,18 +12,17 @@ if (!isset($_GET['id']) or !is_numeric($_GET['id'])){
 }
 
 //CONSULTA O REGISTRO
-$obProduto = (new Produto)->find($_GET['id']);
+$obVenda = (new Venda)->find($_GET['id']);
 
 //VALIDAÇÃO DO REGISTRO
-if (!$obProduto instanceof Produto){
+if (!$obVenda instanceof Venda){
     header('location: index.php?status=error');
     exit;
 }
 
 //VALIDAÇÃO DO POST
 if (isset($_POST['excluir'])) {
-
-    $obProduto->delete();
+    $obVenda->delete();
 
     header('location: index.php?status=success');
     exit;

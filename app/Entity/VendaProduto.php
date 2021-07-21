@@ -4,13 +4,13 @@ namespace App\Entity;
 use \App\Db\Database;
 use \PDO;
 
-class TipoProduto {
+class VendaProduto {
 
     /**
      * Nome da tabela no banco
      * @var string
      */
-    private $nomeTabela = 'tipos_produtos';
+    private $nomeTabela = 'vendas_produtos';
 
     /**
      * Identificador único
@@ -19,16 +19,34 @@ class TipoProduto {
     public $id;
 
     /**
-     * Nome
-     * @var string
+     * ID da Venda
+     * @var integer
      */
-    public $nome;
+    public $venda_id;
 
     /**
-     * Descrição (pode conter html)
-     * @var string
+     * ID do Produto
+     * @var integer
      */
-    public $descricao;
+    public $produto_id;
+
+    /**
+     * Quantidade
+     * @var integer
+     */
+    public $quantidade;
+
+    /**
+     * Valor unitário
+     * @var float
+     */
+    public $valor_unitario;
+
+    /**
+     * Valor total
+     * @var float
+     */
+    public $valor_total;
 
     /**
      * Percentual de imposto pago
@@ -37,16 +55,11 @@ class TipoProduto {
     public $percentual_imposto;
 
     /**
-     * Define se está ativo
-     * @var boolean
+     * Valor total de imposto
+     * @var float
      */
-    public $ativo;
+    public $valor_total_imposto;
 
-    /**
-     * Data/hora de cadastro
-     * @var string
-     */
-    public $dh_cadastro;
 
     /**
      * Método responsável por cadastrar um novo registro no banco
@@ -54,18 +67,17 @@ class TipoProduto {
      * @return boolean
      */
     public function create() {
-        //DEFINIR A DATA
-        $this->dh_cadastro = date('Y-m-d H:i:s');
-
         $db = new Database($this->nomeTabela);
 
         //INSERIR REGISTRO NO BANCO
         $this->id = $db->insert([
-            'nome' => $this->nome,
-            'descricao' => $this->descricao,
+            'venda_id' => $this->venda_id,
+            'produto_id' => $this->produto_id,
+            'quantidade' => $this->quantidade,
+            'valor_unitario' => $this->valor_unitario,
+            'valor_total' => $this->valor_total,
             'percentual_imposto' => $this->percentual_imposto,
-            'ativo' => $this->ativo,
-            'dh_cadastro' => $this->dh_cadastro
+            'valor_total_imposto' => $this->valor_total_imposto
         ]);
 
         //RETORNAR SUCESSO
@@ -81,10 +93,12 @@ class TipoProduto {
         $db = new Database($this->nomeTabela);
 
         return $db->update('id = ' . $this->id, [
-            'nome' => $this->nome,
-            'descricao' => $this->descricao,
+            'produto_id' => $this->produto_id,
+            'quantidade' => $this->quantidade,
+            'valor_unitario' => $this->valor_unitario,
+            'valor_total' => $this->valor_total,
             'percentual_imposto' => $this->percentual_imposto,
-            'ativo' => $this->ativo,
+            'valor_total_imposto' => $this->valor_total_imposto
         ]);
     }
 
@@ -122,16 +136,21 @@ class TipoProduto {
     }
 
     /**
-     * Preencher os atributos do objeto pelos dados do array para salvar/atualizar no banco
+     * Preencher os atributos do objeto para salvar/atualizar no banco
      *
      * @param $data
      * @return $this
      */
     public function fill($data) {
-        $this->nome = $data['nome'];
-        $this->descricao = $data['descricao'];
-        $this->percentual_imposto = formatarFloatBD($data['percentual_imposto']);
-        $this->ativo = $data['ativo'];
+        if (array_key_exists('venda_id', $data)) {
+            $this->venda_id = $data['venda_id'];
+        }
+        $this->produto_id = $data['produto_id'];
+        $this->quantidade = $data['quantidade'];
+        $this->valor_unitario = $data['valor_unitario'];
+        $this->valor_total = $data['valor_total'];
+        $this->percentual_imposto = $data['percentual_imposto'];
+        $this->valor_total_imposto = $data['valor_total_imposto'];
 
         return $this;
     }

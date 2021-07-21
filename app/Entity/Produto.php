@@ -56,6 +56,7 @@ class Produto {
 
     /**
      * Método responsável por cadastrar um novo registro no banco
+     *
      * @return boolean
      */
     public function create() {
@@ -79,6 +80,7 @@ class Produto {
 
     /**
      * Método responsável por atualizar um registro no banco
+     *
      * @return boolean
      */
     public function update() {
@@ -94,6 +96,7 @@ class Produto {
 
     /**
      * Método responsável por excluir um registro do banco
+     *
      * @return boolean
      */
     public function delete() {
@@ -102,6 +105,7 @@ class Produto {
 
     /**
      * Método responsável por obter os registros do banco de dados
+     *
      * @param  string $where
      * @param  string $order
      * @param  string $limit
@@ -114,6 +118,7 @@ class Produto {
 
     /**
      * Método responsável por buscar um registro com base em seu ID
+     *
      * @param integer $id
      * @return Produto
      */
@@ -124,12 +129,29 @@ class Produto {
         return $registro;
     }
 
+    /**
+     * Retornar o tipo de produto
+     *
+     * @param $id
+     * @return TipoProduto
+     */
     public function getTipoProduto($id){
         return (new TipoProduto)->find($id);
     }
 
+    /**
+     * Método responsável por obter os registros do banco de dados com atribuição do tipo
+     *
+     * @param null $where
+     * @param null $order
+     * @param null $limit
+     * @return array
+     */
     public function getComTipo($where = null, $order = null, $limit = null) {
+        // Buscar os registros
         $registros = $this->get($where = null, $order = null, $limit = null);
+
+        // Percorrer os registros para adicionar o tipo de produto
         foreach ($registros as $registro) {
             $registro->tipoProduto = $this->getTipoProduto($registro->tipo_id);
         }
@@ -137,7 +159,8 @@ class Produto {
     }
 
     /**
-     * Preencher os atributos do objeto para salvar/atualizar no banco
+     * Preencher os atributos do objeto pelos dados do array para salvar/atualizar no banco
+     *
      * @param $data
      * @return $this
      */
@@ -146,6 +169,7 @@ class Produto {
         $this->descricao = $data['descricao'];
         $this->tipo_id = $data['tipo_id'];
         $this->ativo = $data['ativo'];
+
         return $this;
     }
 }

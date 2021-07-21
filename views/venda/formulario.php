@@ -3,7 +3,7 @@
 
     <form method="post">
         <div class="form-group">
-            <label for="dh_cadastro">Data/Hora</label>
+            <label for="dh_cadastro">Cadastro</label>
             <input type="text" class="form-control" id="dh_cadastro" name="dh_cadastro" readonly required
                    value="<?=($obVenda->dh_cadastro ? formatarDataHoraBr($obVenda->dh_cadastro) : date('d/m/Y H:i:s'))?>">
         </div>
@@ -13,7 +13,7 @@
             <div class="input-group">
                 <div class="input-group-addon"> <i class="fa fa-dollar-sign"></i> </div>
                 <input type="text" class="form-control mascara-valor valid" id="valor_total_compra" name="valor_total_compra"
-                       value="<?=formatarValorBr($obVenda->valor_total_compra ?? "0,00")?>"
+                       value="<?=formatarValorBr($obVenda->valor_total_compra ?? "0")?>"
                        readonly>
             </div>
         </div>
@@ -48,7 +48,7 @@
                                     $iProd = 1;
                                     $linhasProduto .= include '_linha-produto.php';
                                 } else {
-                                    foreach ($obVenda->produtos as $prodVenda) {
+                                    foreach ($obVenda->produtosVenda as $prodVenda) {
                                         $iProd = $prodVenda->id;
                                         $linhasProduto .= include '_linha-produto.php';
                                     }
@@ -67,6 +67,7 @@
             </div>
         </div> <!-- /.panel -->
 
+        <input type="hidden" name="cadastrando" value="<?=($cadastro?1:0)?>">
 
         <div class="row">
             <div class="col-lg-6">

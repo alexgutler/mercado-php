@@ -9,18 +9,21 @@ class Database {
 
     /**
      * Nome da tabela a ser manipulada
+     *
      * @var string
      */
     private $table;
 
     /**
      * Instancia de conexão com o banco de dados
+     *
      * @var PDO
      */
     private $connection;
 
     /**
      * Define a tabela e instancia e conexão
+     *
      * @param string $table
      */
     public function __construct($table = null) {
@@ -42,6 +45,7 @@ class Database {
 
     /**
      * Método responsável por executar queries dentro do banco de dados
+     *
      * @param  string $query
      * @param  array  $params
      * @return PDOStatement
@@ -58,6 +62,7 @@ class Database {
 
     /**
      * Método responsável por inserir dados no banco
+     *
      * @param  array $values [ field => value ]
      * @return integer ID inserido
      */
@@ -78,6 +83,7 @@ class Database {
 
     /**
      * Método responsável por executar uma consulta no banco
+     *
      * @param  string $where
      * @param  string $order
      * @param  string $limit
@@ -99,6 +105,7 @@ class Database {
 
     /**
      * Método responsável por executar atualizações no banco de dados
+     *
      * @param  string $where
      * @param  array $values [ field => value ]
      * @return boolean
@@ -119,6 +126,7 @@ class Database {
 
     /**
      * Método responsável por excluir dados do banco
+     *
      * @param  string $where
      * @return boolean
      */

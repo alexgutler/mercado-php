@@ -1,9 +1,12 @@
 <main>
-    <h2 class="mt-3"><?=TITLE?></h2>
+    <h2><?=TITLE?></h2>
 
     <form method="post">
         <div class="form-group">
-            <p>Você deseja realmente excluir o registro <strong>"<?=$obProduto->nome?>"</strong>?</p>
+            <p>
+                Você deseja realmente excluir o registro
+                <strong>"ID: <?=$obVenda->id?>"</strong>?
+            </p>
         </div>
 
         <div class="form-group">
