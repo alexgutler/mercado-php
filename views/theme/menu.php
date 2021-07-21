@@ -13,7 +13,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="/">Início</a></li>
-                <li><a href="#">Vendas</a></li>
+                <li><a href="/views/venda/">Vendas</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Cadastros <span class="caret"></span></a>
