@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="shortcut icon" href="/assets/images/favicon.ico">
 
-    <title><?php echo defined("PAGE_TITLE") ? PAGE_TITLE : "Mercado App"; ?></title>
+    <title><?=(defined("PAGE_TITLE") ? PAGE_TITLE : "Mercado App")?></title>
   </head>
   <body>
 

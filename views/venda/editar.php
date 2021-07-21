@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-define('TITLE', 'Editar Produto');
+define('TITLE', 'Editar Venda');
 
 use \App\Entity\Produto;
 use \App\Entity\Venda;

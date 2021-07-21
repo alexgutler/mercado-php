@@ -22,7 +22,6 @@ if (!$obProduto instanceof Produto){
 
 //VALIDAÇÃO DO POST
 if (isset($_POST['excluir'])) {
-
     $obProduto->delete();
 
     header('location: index.php?status=success');

@@ -13,7 +13,11 @@
     }
 
     $resultados = '';
+    $valor_total = $valor_imposto = 0;
     foreach ($registros as $registro) {
+        $valor_total += $registro->valor_total_compra;
+        $valor_imposto += $registro->valor_total_imposto;
+
         $resultados .= '<tr>
                           <td>'.$registro->id.'</td>
                           <td>'.(formatarValorBr($registro->valor_total_compra)).'</td>
@@ -32,10 +36,17 @@
     }
 
     $resultados = strlen($resultados) ? $resultados : '<tr>
-                                                         <td colspan="5" class="text-center">
-                                                            Nenhum registro encontrado
-                                                         </td>
+                                                           <td colspan="5" class="text-center">
+                                                              Nenhum registro encontrado
+                                                           </td>
                                                        </tr>';
+
+    $totais = !strlen($resultados) ? '' : '<tr class="info">
+                                               <th>TOTAL</th>
+                                               <th>'.(formatarValorBr($valor_total)).'</th>
+                                               <th>'.(formatarValorBr($valor_imposto)).'</th>
+                                               <th colspan="3"></th>
+                                           </tr>'
 
 ?>
 
@@ -67,6 +78,9 @@
             <tbody>
                 <?=$resultados?>
             </tbody>
+            <tfoot>
+                <?=$totais?>
+            </tfoot>
         </table>
     </section>
 </main>

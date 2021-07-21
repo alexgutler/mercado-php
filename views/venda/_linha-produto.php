@@ -11,7 +11,7 @@
 <tr id="produtos-<?=$iProd?>" class="linha-produto">
     <td>
         <select class="form-control produto" id="produtos_produto-<?=$iProd?>" name="produtos[<?=$iProd?>][produto_id]" required>
-            <option value="" <?=!$prodVenda ? 'selected' : ''?>>Selecione...</option>
+            <option value="" <?=!$hasProd ? 'selected' : ''?>>Selecione...</option>
             <?=$opcoesSelectProdutos?>
         </select>
     </td>
