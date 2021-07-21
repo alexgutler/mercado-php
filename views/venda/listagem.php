@@ -35,19 +35,18 @@
                         </tr>';
     }
 
-    $resultados = strlen($resultados) ? $resultados : '<tr>
-                                                           <td colspan="5" class="text-center">
-                                                              Nenhum registro encontrado
-                                                           </td>
-                                                       </tr>';
-
     $totais = !strlen($resultados) ? '' : '<tr class="info">
                                                <th>TOTAL</th>
                                                <th>'.(formatarValorBr($valor_total)).'</th>
                                                <th>'.(formatarValorBr($valor_imposto)).'</th>
                                                <th colspan="3"></th>
-                                           </tr>'
+                                           </tr>';
 
+    $resultados = strlen($resultados) ? $resultados : '<tr>
+                                                           <td colspan="5" class="text-center">
+                                                              Nenhum registro encontrado
+                                                           </td>
+                                                       </tr>';
 ?>
 
 <main>
