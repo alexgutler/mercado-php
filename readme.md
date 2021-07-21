@@ -1,7 +1,7 @@
-## Desafio Técnico `Mercado PHP
+## Desafio Técnico "Mercado PHP"
 
 
-## Instalação
+### Instalação
 
 Clone o projeto com o código abaixo no terminal.
 
@@ -17,17 +17,13 @@ Após colar o projeto, será necessário instalar as dependências do Composer, 
 composer install
 ```
 
-Agora crie o banco de dados e `MySQL` e faça a configuração da conexão no arquivo:
+Agora crie o banco de dados no `PostgreSQL` e faça a configuração da conexão no arquivo:
 
 ```php
 app\Utils\config.php
 ```
 
-Para criar as tabelas, execute o comando abaixo no terminal:
-
-```php
-php fixtures\fixtures.php
-```
+Importe a estrutura do banco de dados que se encontra no arquivo `database.sql` localizado na raiz do projeto.
 
 Inicie um servidor nativo do PHP a partir do diretório raiz do projeto para subir a aplicação utilizando o seguinte comando no terminal:
 

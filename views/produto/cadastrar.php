@@ -19,7 +19,7 @@ if (isset($_POST['nome'], $_POST['tipo_id'], $_POST['ativo'])){
 include_once __DIR__ . '/../theme/header.php';
 
 $cadastro = true;
-$tiposProduto = (new TipoProduto)->get('ativo=1', 'nome');
+$tiposProduto = (new TipoProduto)->get('ativo=true', 'nome');
 include_once __DIR__ .'/formulario.php';
 
 include_once __DIR__ . '/../theme/footer.php';
