@@ -22,12 +22,7 @@ if(!$obTipo instanceof TipoProduto){
 
 //VALIDAÇÃO DO POST
 if (isset($_POST['nome'], $_POST['percentual_imposto'], $_POST['ativo'])) {
-
-    $obTipo->nome = $_POST['nome'];
-    $obTipo->descricao = $_POST['descricao'];
-    $obTipo->percentual_imposto = $_POST['percentual_imposto'];
-    $obTipo->ativo = $_POST['ativo'];
-    $obTipo->update();
+    $obTipo->fill($_POST)->update();
 
     header('location: index.php?status=success');
     exit;

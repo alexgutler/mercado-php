@@ -145,3 +145,7 @@ a.bg-danger:focus {
     vertical-align: text-bottom;
     line-height: 18px;
 }
+
+.panel-produtos_venda table {
+    color: #333 !important;
+}

@@ -224,14 +224,13 @@ $(function($) {
         clone.find(".valor_unitario").attr("name", "produtos[" + novoIndex + "][valor_unitario]").val("")
             .attr("id", "produtos_valor_unitario-" + novoIndex);
 
-        // ajustar campo do valor_unitario
+        // ajustar campo do valor_total
         clone.find(".valor_total").attr("name", "produtos[" + novoIndex + "][valor_total]").val("")
             .attr("id", "produtos_valor_total-" + novoIndex);
 
         // inseri a nova linha no final
         clone.insertAfter( parent );
     });
-
 
     /*
     * Ao clicar para remover produto.
@@ -244,22 +243,40 @@ $(function($) {
         }
     });
 
+    /*
+    * Blur no campo de quantidade do produto.
+    * */
+    $(document).on("blur", "#produtos .quantidade", function() {
+        calculaValorTotal();
+    });
+
+    /*
+    * Blur no campo de valor unitário do produto.
+    * */
+    $(document).on("blur", "#produtos .valor_unitario", function() {
+        calculaValorTotal();
+    });
+
+    /*
+    * Fazer o cálculo do valor total de cada linha de produto e do total da compra.
+    * */
     function calculaValorTotal() {
         var valorProdutos = 0;
 
-        $("#produtos").find(".valor-unitario").each(function() {
-            quantidade = $(this).closest(".box-produto").find(".quantidade").val();
-            quantidade = (quantidade) ? moeda2float(quantidade) : 0;
+        $("#produtos").find(".linha-produto").each(function() {
+            var quantidade = $(this).find(".quantidade").val();
+            quantidade = (quantidade) ? quantidade : 0;
 
-            var valorUnitario = $(this).val();
+            var valorUnitario = $(this).find(".valor_unitario").val();
             valorUnitario = (valorUnitario) ? moeda2float(valorUnitario) : 0;
             valorTotal = valorUnitario * quantidade;
 
-            $(this).closest(".box-produto").find(".valor-total").val( float2moeda(valorTotal) );
+            $(this).find(".valor_total").val( float2moeda(valorTotal) );
 
             valorProdutos += valorTotal;
         });
 
-        // $("#valor_total_produtos").val( float2moeda(valorProdutos) );
+        $("#valor_total_compra").val( float2moeda(valorProdutos) );
     }
+
 });

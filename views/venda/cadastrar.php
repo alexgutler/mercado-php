@@ -4,17 +4,19 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 define('TITLE', 'Nova Venda');
 
 use \App\Entity\Produto;
-use \App\Entity\TipoProduto;
+use \App\Entity\Venda;
 
-$obProduto = new Produto;
+$obVenda = new Venda;
 
 //VALIDAÇÃO DO POST
-if (isset($_POST['nome'], $_POST['tipo_id'], $_POST['ativo'])){
-    $obProduto->nome = $_POST['nome'];
-    $obProduto->descricao = $_POST['descricao'];
-    $obProduto->tipo_id = $_POST['tipo_id'];
-    $obProduto->ativo = $_POST['ativo'];
-    $obProduto->create();
+if (isset($_POST['dh_cadastro'], $_POST['valor_total_compra'], $_POST['produtos'])) {
+    dd($_POST['produtos'], $_POST['dh_cadastro']);
+
+    $obVenda->nome = $_POST['nome'];
+    $obVenda->descricao = $_POST['descricao'];
+    $obVenda->tipo_id = $_POST['tipo_id'];
+    $obVenda->ativo = $_POST['ativo'];
+    $obVenda->create();
 
     header('location: index.php?status=success');
     exit;

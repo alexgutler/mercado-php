@@ -14,8 +14,8 @@
 
         <div class="form-group">
             <label for="percentual_imposto">Percentual Imposto <i class="fa fa-asterisk fa-required"></i></label>
-            <input type="number" class="form-control" id="percentual_imposto" name="percentual_imposto" value="<?=$obTipo->percentual_imposto?>"
-                   min="0" required>
+            <input type="text" class="form-control mascara-valor" id="percentual_imposto" name="percentual_imposto"
+                   value="<?=formatarValorBr($obTipo->percentual_imposto ?? "0,00")?>" min="0" step=".01" required>
         </div>
 
         <div class="form-group">

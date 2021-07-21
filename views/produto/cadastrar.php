@@ -10,11 +10,7 @@ $obProduto = new Produto;
 
 //VALIDAÇÃO DO POST
 if (isset($_POST['nome'], $_POST['tipo_id'], $_POST['ativo'])){
-    $obProduto->nome = $_POST['nome'];
-    $obProduto->descricao = $_POST['descricao'];
-    $obProduto->tipo_id = $_POST['tipo_id'];
-    $obProduto->ativo = $_POST['ativo'];
-    $obProduto->create();
+    $obProduto->fill($_POST)->create();
 
     header('location: index.php?status=success');
     exit;

@@ -135,4 +135,17 @@ class Produto {
         }
         return $registros;
     }
+
+    /**
+     * Preencher os atributos do objeto para salvar/atualizar no banco
+     * @param $data
+     * @return $this
+     */
+    public function fill($data) {
+        $this->nome = $data['nome'];
+        $this->descricao = $data['descricao'];
+        $this->tipo_id = $data['tipo_id'];
+        $this->ativo = $data['ativo'];
+        return $this;
+    }
 }

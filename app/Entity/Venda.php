@@ -4,13 +4,13 @@ namespace App\Entity;
 use \App\Db\Database;
 use \PDO;
 
-class TipoProduto {
+class Venda {
 
     /**
      * Nome da tabela no banco
      * @var string
      */
-    private $nomeTabela = 'tipos_produtos';
+    private $nomeTabela = 'vendas';
 
     /**
      * Identificador único
@@ -25,22 +25,22 @@ class TipoProduto {
     public $nome;
 
     /**
-     * Descrição (pode conter html)
+     * Observações (pode conter html)
      * @var string
      */
-    public $descricao;
+    public $observacoes;
 
     /**
-     * Percentual de imposto pago
+     * Valor total compra
      * @var float
      */
-    public $percentual_imposto;
+    public $valor_total_compra;
 
     /**
-     * Define se está ativo
-     * @var boolean
+     * Valor total de imposto
+     * @var float
      */
-    public $ativo;
+    public $valor_total_imposto;
 
     /**
      * Data/hora de cadastro
@@ -53,17 +53,13 @@ class TipoProduto {
      * @return boolean
      */
     public function create() {
-        //DEFINIR A DATA
-        $this->dh_cadastro = date('Y-m-d H:i:s');
-
         $db = new Database($this->nomeTabela);
 
         //INSERIR REGISTRO NO BANCO
         $this->id = $db->insert([
-            'nome' => $this->nome,
-            'descricao' => $this->descricao,
-            'percentual_imposto' => $this->percentual_imposto,
-            'ativo' => $this->ativo,
+            'observacoes' => $this->observacoes,
+            'valor_total_compra' => $this->valor_total_compra,
+            'valor_total_imposto' => $this->valor_total_imposto,
             'dh_cadastro' => $this->dh_cadastro
         ]);
 
@@ -79,9 +75,9 @@ class TipoProduto {
         $db = new Database($this->nomeTabela);
 
         return $db->update('id = ' . $this->id, [
-            'nome' => $this->nome,
-            'descricao' => $this->descricao,
-            'percentual_imposto' => $this->percentual_imposto,
+            'observacoes' => $this->observacoes,
+            'valor_total_compra' => $this->valor_total_compra,
+            'valor_total_imposto' => $this->valor_total_imposto,
             'ativo' => $this->ativo,
         ]);
     }
@@ -108,24 +104,12 @@ class TipoProduto {
 
     /**
      * Método responsável por buscar um registro com base em seu ID
-     * @param  integer $id
-     * @return TipoProduto
+     * @param integer $id
+     * @return Produto
      */
     public function find($id) {
         return (new Database($this->nomeTabela))->select('id = '.$id)
             ->fetchObject(self::class);
     }
 
-    /**
-     * Preencher os atributos do objeto para salvar/atualizar no banco
-     * @param $data
-     * @return $this
-     */
-    public function fill($data) {
-        $this->nome = $data['nome'];
-        $this->descricao = $data['descricao'];
-        $this->percentual_imposto = formatarFloatMySQL($data['percentual_imposto']);
-        $this->ativo = $data['ativo'];
-        return $this;
-    }
 }

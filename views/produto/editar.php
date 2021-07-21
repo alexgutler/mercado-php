@@ -23,12 +23,7 @@ if (!$obProduto instanceof Produto){
 
 //VALIDAÇÃO DO POST
 if (isset($_POST['nome'], $_POST['tipo_id'], $_POST['ativo'])) {
-
-    $obProduto->nome = $_POST['nome'];
-    $obProduto->descricao = $_POST['descricao'];
-    $obProduto->tipo_id = $_POST['tipo_id'];
-    $obProduto->ativo = $_POST['ativo'];
-    $obProduto->update();
+    $obProduto->fill($_POST)->update();
 
     header('location: index.php?status=success');
     exit;

@@ -22,7 +22,7 @@
         <div class="form-group">
             <label for="tipo">Tipo <i class="fa fa-asterisk fa-required"></i> </label>
             <select class="form-control" id="tipo" name="tipo_id" required>
-                <option <?=$cadastro ? 'selected' : ''?>>Selecione...</option>
+                <option value="" <?=$cadastro ? 'selected' : ''?>>Selecione...</option>
                 <?=$opcoesSelectTipos?>
             </select>
         </div>
