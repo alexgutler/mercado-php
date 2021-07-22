@@ -1,4 +1,4 @@
-## Desafio Técnico "Mercado PHP"
+## Mercado PHP
 
 
 ### Instalação
