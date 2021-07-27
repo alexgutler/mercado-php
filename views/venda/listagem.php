@@ -22,7 +22,7 @@
                           <td>'.$registro->id.'</td>
                           <td>'.(formatarValorBr($registro->valor_total_compra)).'</td>
                           <td>'.(formatarValorBr($registro->valor_total_imposto)).'</td>
-                          <td>'.$registro->observacoes.'</td>
+                          <td>'.htmlentities($registro->observacoes).'</td>
                           <td>'.(formatarDataHoraBr($registro->dh_cadastro)).'</td>
                           <td>
                             <a href="editar.php?id='.$registro->id.'" class="btn btn-warning btn-xs">

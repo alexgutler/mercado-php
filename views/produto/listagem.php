@@ -16,8 +16,8 @@
     foreach ($registros as $registro) {
         $resultados .= '<tr>
                           <td>'.$registro->id.'</td>
-                          <td>'.$registro->nome.'</td>
-                          <td>'.$registro->descricao.'</td>
+                          <td>'.htmlentities($registro->nome).'</td>
+                          <td>'.htmlentities($registro->descricao).'</td>
                           <td>'.($registro->tipoProduto ? $registro->tipoProduto->nome : '').'</td>
                           <td>'.($registro->ativo ? 'Ativo' : 'Inativo').'</td>
                           <td>'.date('d/m/Y H:i:s', strtotime($registro->dh_cadastro)).'</td>
